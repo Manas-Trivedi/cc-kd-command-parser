@@ -1,0 +1,13 @@
+.venv/bin/python training/train.py --config training/config.yaml --subset 50 --output-dir artifacts/subset-50 --loss-file training/loss_subset50.csv
+training on 50 records, 10 epochs, output artifacts/subset-50
+epoch 1: loss 5.1395 (1s)
+epoch 2: loss 6.4661 (1s)
+epoch 3: loss 2.0950 (1s)
+epoch 4: loss 1.1479 (1s)
+epoch 5: loss 0.7692 (1s)
+epoch 6: loss 0.4879 (1s)
+epoch 7: loss 0.3005 (1s)
+epoch 8: loss 0.2161 (1s)
+epoch 9: loss 0.1567 (1s)
+epoch 10: loss 0.1226 (1s)
+saved model and tokenizer to artifacts/subset-50

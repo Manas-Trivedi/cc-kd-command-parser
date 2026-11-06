@@ -1,0 +1,13 @@
+.venv/bin/python training/train.py --config training/config.yaml 
+training on 1500 records, 10 epochs, output artifacts/v1
+epoch 1: loss 0.8077 (30s)
+epoch 2: loss 0.3918 (30s)
+epoch 3: loss 0.2194 (30s)
+epoch 4: loss 0.1567 (30s)
+epoch 5: loss 0.1067 (30s)
+epoch 6: loss 0.0842 (30s)
+epoch 7: loss 0.0488 (30s)
+epoch 8: loss 0.0271 (30s)
+epoch 9: loss 0.0119 (30s)
+epoch 10: loss 0.0044 (30s)
+saved model and tokenizer to artifacts/v1
