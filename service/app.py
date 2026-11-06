@@ -46,6 +46,9 @@ with open(SCHEMA_PATH, encoding="utf-8") as f:
     VALIDATOR = jsonschema.Draft7Validator(json.load(f)["json_schema"])
 
 torch.set_num_threads(int(os.environ.get("TORCH_THREADS", "1")))
+# On the arm64 Linux CPU wheel the oneDNN path is ~20x slower for batch-1 decoding
+# (measured 9.8 s vs 0.43 s per request at 1 CPU), so use the plain ATen kernels.
+torch.backends.mkldnn.enabled = False
 state = {"tok": None, "model": None, "error": None}
 infer_lock = threading.Lock()
 app = FastAPI()
