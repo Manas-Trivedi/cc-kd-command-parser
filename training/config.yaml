@@ -2,7 +2,7 @@
 seed: 42
 learning_rate: 0.0005
 batch_size: 16
-epochs: 8
+epochs: 10
 max_seq_length: 96
 warmup_ratio: 0.05
 weight_decay: 0.0

@@ -1,5 +1,5 @@
-# Model v2: same data and settings as v1 with two more epochs.
-seed: 42
+# Model v2: same data and settings as v1, different random seed (7 instead of 42).
+seed: 7
 learning_rate: 0.0005
 batch_size: 16
 epochs: 10

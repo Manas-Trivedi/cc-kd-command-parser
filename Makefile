@@ -85,8 +85,8 @@ upload-models: venv
 	$(PY) scripts/s3.py put artifacts/release/model-v2.sha256 models/v2/model.sha256
 
 release:
-	gh release create v1 artifacts/release/model-v1.tar.gz artifacts/release/model-v1.sha256 -R $(REPO) -t "Student model v1" -n "Pythia-70M distilled from phi3.5, 8 epochs, seed 42"
-	gh release create v2 artifacts/release/model-v2.tar.gz artifacts/release/model-v2.sha256 -R $(REPO) -t "Student model v2" -n "Pythia-70M distilled from phi3.5, see training/config_v2.yaml"
+	gh release create v1 artifacts/release/model-v1.tar.gz artifacts/release/model-v1.sha256 -R $(REPO) -t "Student model v1" -n "Pythia-70M distilled from phi3.5 (training/config.yaml: 10 epochs, seed 42)"
+	gh release create v2 artifacts/release/model-v2.tar.gz artifacts/release/model-v2.sha256 -R $(REPO) -t "Student model v2" -n "Pythia-70M distilled from phi3.5 (training/config_v2.yaml: 10 epochs, seed 7)"
 
 # ---------- checks ----------
 lint: venv
