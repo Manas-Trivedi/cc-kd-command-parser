@@ -1,0 +1,23 @@
+# Everything `make train` needs. train.py reads only this file.
+seed: 42
+learning_rate: 0.0005
+batch_size: 16
+epochs: 8
+max_seq_length: 96
+warmup_ratio: 0.05
+weight_decay: 0.0
+
+base_model: EleutherAI/pythia-70m
+base_model_revision: main
+train_file: data/v1/train.jsonl     # copy of s3://datasets/v1/train.jsonl
+train_records: 1500                 # first 1,500 records of the cleaned dataset
+output_dir: artifacts/v1
+loss_file: training/loss.csv
+
+library_versions:
+  python: "3.12"
+  torch: "2.5.1"
+  transformers: "4.46.3"
+  tokenizers: "0.20.3"
+  numpy: "2.5.4"
+  pyyaml: "6.0.2"

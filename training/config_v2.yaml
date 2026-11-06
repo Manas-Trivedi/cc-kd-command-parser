@@ -1,0 +1,23 @@
+# Model v2: same data and settings as v1 with two more epochs.
+seed: 42
+learning_rate: 0.0005
+batch_size: 16
+epochs: 10
+max_seq_length: 96
+warmup_ratio: 0.05
+weight_decay: 0.0
+
+base_model: EleutherAI/pythia-70m
+base_model_revision: main
+train_file: data/v1/train.jsonl
+train_records: 1500
+output_dir: artifacts/v2
+loss_file: training/loss_v2.csv
+
+library_versions:
+  python: "3.12"
+  torch: "2.5.1"
+  transformers: "4.46.3"
+  tokenizers: "0.20.3"
+  numpy: "2.5.4"
+  pyyaml: "6.0.2"
