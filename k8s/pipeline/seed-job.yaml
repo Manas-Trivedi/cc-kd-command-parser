@@ -1,0 +1,23 @@
+# Creates the buckets, uploads commands_pool.jsonl and (when SEED_MODELS is set)
+# copies the released models into s3://models/<version>/.
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: seed-storage
+  namespace: pipeline
+spec:
+  backoffLimit: 4
+  ttlSecondsAfterFinished: 3600
+  template:
+    spec:
+      restartPolicy: Never
+      containers:
+        - name: seed
+          image: kd-worker:1.0
+          imagePullPolicy: IfNotPresent
+          command: ["python", "seed.py"]
+          env:
+            - {name: S3_ENDPOINT, value: "http://seaweedfs.data.svc.cluster.local:8333"}
+            - {name: SEED_MODELS, value: "v1,v2"}
+          envFrom:
+            - secretRef: {name: s3-credentials}
