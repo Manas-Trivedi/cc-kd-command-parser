@@ -1,0 +1,37 @@
+# Teacher labelling: an Indexed Job runs SHARD_COUNT workers at once.
+# Each pod gets JOB_COMPLETION_INDEX = 0..N-1 from Kubernetes and uses it as SHARD_INDEX.
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: pipeline
+---
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: teacher-label
+  namespace: pipeline
+spec:
+  completionMode: Indexed
+  completions: 3
+  parallelism: 3
+  backoffLimitPerIndex: 3
+  template:
+    spec:
+      restartPolicy: Never
+      containers:
+        - name: worker
+          image: kd-worker:1.0
+          imagePullPolicy: IfNotPresent
+          env:
+            - name: SHARD_INDEX
+              valueFrom:
+                fieldRef:
+                  fieldPath: metadata.annotations['batch.kubernetes.io/job-completion-index']
+            - {name: SHARD_COUNT, value: "3"}
+            - {name: S3_ENDPOINT, value: "http://seaweedfs.data.svc.cluster.local:8333"}
+            - {name: OLLAMA_URL, value: "http://host.docker.internal:11434"}
+          envFrom:
+            - secretRef: {name: s3-credentials}
+          resources:
+            requests: {cpu: 50m, memory: 64Mi}
+            limits: {cpu: 500m, memory: 256Mi}

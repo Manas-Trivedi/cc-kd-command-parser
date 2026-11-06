@@ -1,0 +1,23 @@
+apiVersion: k3d.io/v1alpha5
+kind: Simple
+metadata:
+  name: kd
+servers: 1
+agents: 1
+image: rancher/k3s:v1.35.5-k3s1
+ports:
+  # Traefik ingress -> http://localhost:8080
+  - port: 127.0.0.1:8080:80
+    nodeFilters:
+      - loadbalancer
+  # SeaweedFS S3 NodePort -> http://localhost:8333 (used from the laptop for uploads)
+  - port: 127.0.0.1:8333:30333
+    nodeFilters:
+      - server:0
+options:
+  k3s:
+    extraArgs:
+      # metrics every 15s so the HPA reacts within a load-test run
+      - arg: --kubelet-arg=housekeeping-interval=10s
+        nodeFilters:
+          - all
