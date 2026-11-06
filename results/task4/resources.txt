@@ -1,0 +1,35 @@
+NAME                     READY   UP-TO-DATE   AVAILABLE   AGE   CONTAINERS   IMAGES          SELECTOR
+deployment.apps/parser   2/2     2            2           21m   parser       kd-parser:1.0   app=parser
+
+NAME             TYPE        CLUSTER-IP    EXTERNAL-IP   PORT(S)   AGE   SELECTOR
+service/parser   ClusterIP   10.43.25.51   <none>        80/TCP    21m   app=parser
+
+NAME                               CLASS     HOSTS   ADDRESS                       PORTS   AGE
+ingress.networking.k8s.io/parser   traefik   *       192.168.147.2,192.168.147.3   80      21m
+
+NAME                                         REFERENCE           TARGETS         MINPODS   MAXPODS   REPLICAS   AGE
+horizontalpodautoscaler.autoscaling/parser   Deployment/parser   cpu: 104%/70%   1         2         2          21m
+  Containers:
+   parser:
+    Image:      kd-parser:1.0
+    Port:       8000/TCP
+    Host Port:  0/TCP
+    Limits:
+      cpu:     1
+      memory:  1Gi
+    Requests:
+      cpu:      500m
+      memory:   512Mi
+    Liveness:   http-get http://:http/healthz delay=5s timeout=3s period=10s #success=1 #failure=3
+    Readiness:  http-get http://:http/readyz delay=0s timeout=2s period=2s #success=1 #failure=1
+    Environment Variables from:
+      s3-credentials  Secret  Optional: false
+    Environment:
+      MODEL_URI:       s3://models/v1/
+      MODEL_VERSION:   v1
+      S3_ENDPOINT:     http://seaweedfs.data.svc.cluster.local:8333
+      MAX_NEW_TOKENS:  64
+      FAULT_INJECT:    0
+      POD_NAME:         (v1:metadata.name)
+    Mounts:            <none>
+  Volumes:             <none>

@@ -1,0 +1,30 @@
+[2026-11-07 05:06:20,994] Manass-MacBook-Pro/INFO/locust.main: Starting Locust 2.32.4
+[2026-11-07 05:06:20,996] Manass-MacBook-Pro/INFO/locust.main: Run time limit set to 240 seconds
+[2026-11-07 05:06:20,996] Manass-MacBook-Pro/INFO/locust.runners: Ramping to 4 users at a rate of 4.00 per second
+[2026-11-07 05:06:20,997] Manass-MacBook-Pro/INFO/locust.runners: All users spawned: {"ParserUser": 4} (4 total users)
+[2026-11-07 05:10:20,822] Manass-MacBook-Pro/INFO/locust.main: --run-time limit reached, shutting down
+[2026-11-07 05:10:20,840] Manass-MacBook-Pro/INFO/locust.main: Shutting down (exit code 0)
+Type     Name                                                                          # reqs      # fails |    Avg     Min     Max    Med |   req/s  failures/s
+--------|----------------------------------------------------------------------------|-------|-------------|-------|-------|-------|-------|--------|-----------
+POST     /parse                                                                           957     0(0.00%) |   1000     402    1822    960 |    3.99        0.00
+--------|----------------------------------------------------------------------------|-------|-------------|-------|-------|-------|-------|--------|-----------
+         Aggregated                                                                       957     0(0.00%) |   1000     402    1822    960 |    3.99        0.00
+
+Response time percentiles (approximated)
+Type     Name                                                                                  50%    66%    75%    80%    90%    95%    98%    99%  99.9% 99.99%   100% # reqs
+--------|--------------------------------------------------------------------------------|--------|------|------|------|------|------|------|------|------|------|------|------
+POST     /parse                                                                                960   1300   1400   1400   1600   1700   1700   1800   1800   1800   1800    957
+--------|--------------------------------------------------------------------------------|--------|------|------|------|------|------|------|------|------|------|------|------
+         Aggregated                                                                            960   1300   1400   1400   1600   1700   1700   1800   1800   1800   1800    957
+
+
+Successful requests by header:
+{
+  "per_replica": {
+    "parser-7744984469-ww788": 538,
+    "parser-7744984469-2n8vb": 419
+  },
+  "per_model_version": {
+    "v1": 957
+  }
+}

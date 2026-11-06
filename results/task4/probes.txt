@@ -1,0 +1,20 @@
+# 04:53:55 scale to 0 replicas
+deployment.apps/parser scaled
+# 04:54:04 scale to 1 replica and watch
+deployment.apps/parser scaled
+04:54:05 pod= podReady=false /readyz=n/a endpoints=[] ingress/parse=HTTP 503
+04:54:06 pod=parser-7744984469-7zc9c podReady=false /readyz=down endpoints=[] ingress/parse=HTTP 503
+04:54:07 pod=parser-7744984469-7zc9c podReady=false /readyz=503 endpoints=[parser-7744984469-7zc9c=false ] ingress/parse=HTTP 503
+04:54:08 pod=parser-7744984469-7zc9c podReady=false /readyz=200 endpoints=[parser-7744984469-7zc9c=false ] ingress/parse=HTTP 503
+04:54:09 pod=parser-7744984469-7zc9c podReady=false /readyz=200 endpoints=[parser-7744984469-7zc9c=false ] ingress/parse=HTTP 503
+04:54:10 pod=parser-7744984469-7zc9c podReady=true /readyz=200 endpoints=[parser-7744984469-7zc9c=true ] ingress/parse=HTTP 200
+# pod log:
+2026-11-06 23:24:07,259 INFO downloading model s3://models/v1/ from http://seaweedfs.data.svc.cluster.local:8333
+2026-11-06 23:24:07,525 INFO download finished: 285.3 MB in 0.3s
+INFO:     10.42.0.1:46836 - "GET /readyz HTTP/1.1" 503 Service Unavailable
+INFO:     127.0.0.1:43062 - "GET /readyz HTTP/1.1" 503 Service Unavailable
+2026-11-06 23:24:08,229 INFO model v1 ready after 1.0s
+INFO:     127.0.0.1:43072 - "GET /readyz HTTP/1.1" 200 OK
+INFO:     127.0.0.1:43086 - "GET /readyz HTTP/1.1" 200 OK
+INFO:     10.42.0.1:46848 - "GET /readyz HTTP/1.1" 200 OK
+INFO:     127.0.0.1:43096 - "GET /readyz HTTP/1.1" 200 OK

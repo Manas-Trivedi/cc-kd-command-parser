@@ -1,0 +1,114 @@
+# 05:06:00 waiting for the HPA to settle at 1 replica (idle)
+NAME     REFERENCE           TARGETS       MINPODS   MAXPODS   REPLICAS   AGE
+parser   Deployment/parser   cpu: 0%/70%   1         2         2          13m
+# 05:06:20 load test 4 min
+05:06:20 parser   Deployment/parser   cpu: 0%/70%   1     2     2     13m
+        top: parser-7744984469-ht7xq   4m    328Mi   
+        top: parser-7744984469-ww788   4m    333Mi   
+05:06:30 parser   Deployment/parser   cpu: 0%/70%   1     2     2     13m
+        top: parser-7744984469-ww788   4m    333Mi   
+05:06:40 parser   Deployment/parser   cpu: 0%/70%   1     2     1     14m
+        top: parser-7744984469-ww788   360m   353Mi   
+05:06:50 parser   Deployment/parser   cpu: 72%/70%   1     2     1     14m
+        top: parser-7744984469-ww788   990m   357Mi   
+05:07:00 parser   Deployment/parser   cpu: 72%/70%   1     2     1     14m
+        top: parser-7744984469-ww788   990m   357Mi   
+05:07:11 parser   Deployment/parser   cpu: 198%/70%   1     2     1     14m
+        top: parser-7744984469-ww788   991m   433Mi   
+05:07:21 parser   Deployment/parser   cpu: 198%/70%   1     2     2     14m
+        top: parser-7744984469-2n8vb   873m   353Mi   
+        top: parser-7744984469-ww788   985m   436Mi   
+05:07:31 parser   Deployment/parser   cpu: 198%/70%   1     2     2     14m
+        top: parser-7744984469-2n8vb   873m   353Mi   
+        top: parser-7744984469-ww788   985m   436Mi   
+05:07:41 parser   Deployment/parser   cpu: 197%/70%   1     2     2     15m
+        top: parser-7744984469-2n8vb   988m   350Mi   
+        top: parser-7744984469-ww788   991m   436Mi   
+05:07:51 parser   Deployment/parser   cpu: 197%/70%   1     2     2     15m
+        top: parser-7744984469-2n8vb   989m   390Mi   
+        top: parser-7744984469-ww788   984m   529Mi   
+05:08:01 parser   Deployment/parser   cpu: 197%/70%   1     2     2     15m
+        top: parser-7744984469-2n8vb   989m   390Mi   
+        top: parser-7744984469-ww788   984m   529Mi   
+05:08:11 parser   Deployment/parser   cpu: 197%/70%   1     2     2     15m
+        top: parser-7744984469-2n8vb   989m   390Mi   
+        top: parser-7744984469-ww788   990m   529Mi   
+05:08:21 parser   Deployment/parser   cpu: 197%/70%   1     2     2     15m
+        top: parser-7744984469-2n8vb   992m   392Mi   
+        top: parser-7744984469-ww788   994m   530Mi   
+05:08:31 parser   Deployment/parser   cpu: 197%/70%   1     2     2     15m
+        top: parser-7744984469-2n8vb   992m   392Mi   
+        top: parser-7744984469-ww788   994m   530Mi   
+05:08:41 parser   Deployment/parser   cpu: 198%/70%   1     2     2     16m
+        top: parser-7744984469-2n8vb   992m   392Mi   
+        top: parser-7744984469-ww788   988m   373Mi   
+05:08:51 parser   Deployment/parser   cpu: 198%/70%   1     2     2     16m
+        top: parser-7744984469-2n8vb   991m   484Mi   
+        top: parser-7744984469-ww788   995m   372Mi   
+05:09:01 parser   Deployment/parser   cpu: 198%/70%   1     2     2     16m
+        top: parser-7744984469-2n8vb   991m   484Mi   
+        top: parser-7744984469-ww788   995m   372Mi   
+05:09:12 parser   Deployment/parser   cpu: 198%/70%   1     2     2     16m
+        top: parser-7744984469-2n8vb   987m   485Mi   
+        top: parser-7744984469-ww788   995m   372Mi   
+05:09:22 parser   Deployment/parser   cpu: 198%/70%   1     2     2     16m
+        top: parser-7744984469-2n8vb   992m   461Mi   
+        top: parser-7744984469-ww788   993m   526Mi   
+05:09:32 parser   Deployment/parser   cpu: 198%/70%   1     2     2     16m
+        top: parser-7744984469-2n8vb   992m   461Mi   
+        top: parser-7744984469-ww788   993m   526Mi   
+05:09:42 parser   Deployment/parser   cpu: 198%/70%   1     2     2     17m
+        top: parser-7744984469-2n8vb   992m   461Mi   
+        top: parser-7744984469-ww788   988m   526Mi   
+05:09:52 parser   Deployment/parser   cpu: 198%/70%   1     2     2     17m
+        top: parser-7744984469-2n8vb   985m   469Mi   
+        top: parser-7744984469-ww788   988m   526Mi   
+05:10:02 parser   Deployment/parser   cpu: 198%/70%   1     2     2     17m
+        top: parser-7744984469-2n8vb   985m   469Mi   
+        top: parser-7744984469-ww788   988m   526Mi   
+05:10:12 parser   Deployment/parser   cpu: 197%/70%   1     2     2     17m
+        top: parser-7744984469-2n8vb   992m   451Mi   
+        top: parser-7744984469-ww788   993m   374Mi   
+# 05:10:20 load finished, waiting for scale down
+05:10:22 parser   Deployment/parser   cpu: 198%/70%   1     2     2     17m
+        top: parser-7744984469-2n8vb   991m   451Mi   
+        top: parser-7744984469-ww788   995m   365Mi   
+05:10:32 parser   Deployment/parser   cpu: 198%/70%   1     2     2     17m
+        top: parser-7744984469-2n8vb   991m   451Mi   
+        top: parser-7744984469-ww788   995m   365Mi   
+05:10:42 parser   Deployment/parser   cpu: 198%/70%   1     2     2     18m
+        top: parser-7744984469-2n8vb   255m   452Mi   
+        top: parser-7744984469-ww788   296m   373Mi   
+05:10:52 parser   Deployment/parser   cpu: 55%/70%   1     2     2     18m
+        top: parser-7744984469-2n8vb   5m    452Mi   
+        top: parser-7744984469-ww788   4m    527Mi   
+05:11:03 parser   Deployment/parser   cpu: 55%/70%   1     2     2     18m
+        top: parser-7744984469-2n8vb   5m    452Mi   
+        top: parser-7744984469-ww788   4m    527Mi   
+05:11:13 parser   Deployment/parser   cpu: 0%/70%   1     2     2     18m
+        top: parser-7744984469-2n8vb   4m    467Mi   
+        top: parser-7744984469-ww788   4m    526Mi   
+05:11:23 parser   Deployment/parser   cpu: 0%/70%   1     2     2     18m
+        top: parser-7744984469-2n8vb   4m    466Mi   
+        top: parser-7744984469-ww788   4m    526Mi   
+05:11:33 parser   Deployment/parser   cpu: 0%/70%   1     2     2     19m
+        top: parser-7744984469-2n8vb   4m    466Mi   
+        top: parser-7744984469-ww788   4m    526Mi   
+05:11:43 parser   Deployment/parser   cpu: 0%/70%   1     2     2     19m
+        top: parser-7744984469-2n8vb   4m    466Mi   
+        top: parser-7744984469-ww788   4m    372Mi   
+05:11:53 parser   Deployment/parser   cpu: 0%/70%   1     2     2     19m
+        top: parser-7744984469-2n8vb   4m    450Mi   
+        top: parser-7744984469-ww788   4m    372Mi   
+05:12:03 parser   Deployment/parser   cpu: 0%/70%   1     2     2     19m
+        top: parser-7744984469-ww788   4m    372Mi   
+# 05:12:07 back to 1 replica
+Events:
+  Type     Reason                        Age                  From                       Message
+  ----     ------                        ----                 ----                       -------
+  Warning  FailedGetResourceMetric       6m48s (x6 over 17m)  horizontal-pod-autoscaler  failed to get cpu utilization: did not receive metrics for targeted pods (pods might be unready)
+  Warning  FailedComputeMetricsReplicas  6m48s (x6 over 17m)  horizontal-pod-autoscaler  invalid metrics (1 invalid out of 1), first error is: failed to get cpu resource metric value: failed to get cpu utilization: did not receive metrics for targeted pods (pods might be unready)
+  Warning  FailedComputeMetricsReplicas  6m33s (x7 over 19m)  horizontal-pod-autoscaler  invalid metrics (1 invalid out of 1), first error is: failed to get cpu resource metric value: failed to get cpu utilization: unable to get metrics for resource cpu: no metrics returned from resource metrics API
+  Warning  FailedGetResourceMetric       6m18s (x8 over 19m)  horizontal-pod-autoscaler  failed to get cpu utilization: unable to get metrics for resource cpu: no metrics returned from resource metrics API
+  Normal   SuccessfulRescale             5m3s                 horizontal-pod-autoscaler  New size: 2; reason: cpu resource utilization (percentage of request) above target
+  Normal   SuccessfulRescale             18s (x2 over 5m48s)  horizontal-pod-autoscaler  New size: 1; reason: All metrics below target

@@ -1,0 +1,67 @@
+# 04:57:03 set v2
+deployment.apps/parser env updated
+Waiting for deployment "parser" rollout to finish: 0 out of 2 new replicas have been updated...
+Waiting for deployment "parser" rollout to finish: 1 out of 2 new replicas have been updated...
+Waiting for deployment "parser" rollout to finish: 1 out of 2 new replicas have been updated...
+Waiting for deployment "parser" rollout to finish: 1 out of 2 new replicas have been updated...
+Waiting for deployment "parser" rollout to finish: 1 old replicas are pending termination...
+Waiting for deployment "parser" rollout to finish: 1 old replicas are pending termination...
+deployment "parser" successfully rolled out
+deployment.apps/parser 
+REVISION  CHANGE-CAUSE
+1         <none>
+2         <none>
+
+# 04:58:11 rollback
+deployment.apps/parser rolled back
+Waiting for deployment "parser" rollout to finish: 0 out of 2 new replicas have been updated...
+Waiting for deployment "parser" rollout to finish: 1 out of 2 new replicas have been updated...
+Waiting for deployment "parser" rollout to finish: 1 out of 2 new replicas have been updated...
+Waiting for deployment "parser" rollout to finish: 2 old replicas are pending termination...
+Waiting for deployment "parser" rollout to finish: 1 old replicas are pending termination...
+Waiting for deployment "parser" rollout to finish: 1 old replicas are pending termination...
+deployment "parser" successfully rolled out
+MODEL_URI=s3://models/v1/
+MODEL_VERSION=v1
+# 05:01:33 after rollback, 5 requests through the ingress:
+HTTP/1.1 200 OK
+X-Model-Version: v1
+X-Served-By: parser-7744984469-77bm5
+HTTP/1.1 200 OK
+X-Model-Version: v1
+X-Served-By: parser-7744984469-488p8
+HTTP/1.1 200 OK
+X-Model-Version: v1
+X-Served-By: parser-7744984469-77bm5
+HTTP/1.1 200 OK
+X-Model-Version: v1
+X-Served-By: parser-7744984469-488p8
+HTTP/1.1 200 OK
+X-Model-Version: v1
+X-Served-By: parser-7744984469-77bm5
+# locust summary
+         Aggregated                                                                      1314     0(0.00%) |    911     400    1625    880 |    4.38        0.00
+
+Response time percentiles (approximated)
+Type     Name                                                                                  50%    66%    75%    80%    90%    95%    98%    99%  99.9% 99.99%   100% # reqs
+--------|--------------------------------------------------------------------------------|--------|------|------|------|------|------|------|------|------|------|------|------
+POST     /parse                                                                                880   1200   1300   1400   1400   1400   1500   1500   1600   1600   1600   1314
+--------|--------------------------------------------------------------------------------|--------|------|------|------|------|------|------|------|------|------|------|------
+         Aggregated                                                                            880   1200   1300   1400   1400   1400   1500   1500   1600   1600   1600   1314
+
+
+Successful requests by header:
+{
+  "per_replica": {
+    "parser-7744984469-7zc9c": 77,
+    "parser-7744984469-mtmlb": 86,
+    "parser-d8c7899dc-2tgqq": 153,
+    "parser-d8c7899dc-lbds6": 154,
+    "parser-7744984469-77bm5": 425,
+    "parser-7744984469-488p8": 419
+  },
+  "per_model_version": {
+    "v1": 1007,
+    "v2": 307
+  }
+}
