@@ -1,0 +1,12 @@
+NAME            STATUS     COMPLETIONS   DURATION   AGE   CONTAINERS   IMAGES          SELECTOR
+teacher-label   Complete   3/3           76m        76m   worker       kd-worker:1.0   batch.kubernetes.io/controller-uid=feee9a90-7628-4066-865d-7a36a8c3e342
+NAME                    READY   STATUS      RESTARTS   AGE   IP           NODE              NOMINATED NODE   READINESS GATES
+teacher-label-0-2ptk7   0/1     Completed   0          22m   10.42.0.19   k3d-kd-server-0   <none>           <none>
+teacher-label-0-f7nkg   0/1     Error       0          22m   10.42.0.16   k3d-kd-server-0   <none>           <none>
+teacher-label-0-j8qfl   0/1     Unknown     0          76m   <none>       k3d-kd-server-0   <none>           <none>
+teacher-label-1-cgt22   0/1     Error       0          22m   10.42.0.17   k3d-kd-server-0   <none>           <none>
+teacher-label-1-jnc2z   0/1     Unknown     0          76m   <none>       k3d-kd-agent-0    <none>           <none>
+teacher-label-1-n9prh   0/1     Completed   0          21m   10.42.1.10   k3d-kd-agent-0    <none>           <none>
+teacher-label-2-6vspp   0/1     Unknown     0          76m   <none>       k3d-kd-server-0   <none>           <none>
+teacher-label-2-dxqlj   0/1     Error       0          22m   10.42.0.15   k3d-kd-server-0   <none>           <none>
+teacher-label-2-xrrwk   0/1     Completed   0          22m   10.42.0.18   k3d-kd-server-0   <none>           <none>

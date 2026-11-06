@@ -1,0 +1,4 @@
+shard-0: 1000 records, matches line%3==0: True
+shard-1: 1000 records, matches line%3==1: True
+shard-2: 1000 records, matches line%3==2: True
+pool ids: 3000 | ids in shards: 3000 | missing: 0 | repeated: 0 | extra: 0

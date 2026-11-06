@@ -1,0 +1,11 @@
+shard files: shard-0.jsonl, shard-1.jsonl, shard-2.jsonl
+{
+  "input": 3000,
+  "a_invalid_json": 2,
+  "b_wrong_keys": 2,
+  "c_bad_intent": 13,
+  "d_slot_not_in_command": 162,
+  "e_duplicates": 49,
+  "kept": 2772
+}
+sha256 a58e34e5f831aea46cbb332fd08961c7248f8da7197849a1642c5ed14fc9ec5e
