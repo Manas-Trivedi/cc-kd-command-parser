@@ -28,7 +28,7 @@ secrets:
 
 storage:
 	kubectl apply -f k8s/data/seaweedfs.yaml
-	kubectl -n data rollout status deploy/seaweedfs --timeout=300s
+	kubectl -n data rollout status deploy/seaweedfs --timeout=900s
 
 images:
 	docker build -t $(WORKER_IMG) -f worker/Dockerfile .
@@ -38,12 +38,12 @@ images:
 seed:
 	kubectl -n pipeline delete job seed-storage --ignore-not-found
 	kubectl apply -f k8s/pipeline/seed-job.yaml
-	kubectl -n pipeline wait --for=condition=complete job/seed-storage --timeout=600s
+	kubectl -n pipeline wait --for=condition=complete job/seed-storage --timeout=1200s
 	kubectl -n pipeline logs job/seed-storage
 
 deploy:
 	kubectl apply -f k8s/app/parser.yaml
-	kubectl -n app rollout status deploy/parser --timeout=600s
+	kubectl -n app rollout status deploy/parser --timeout=900s
 
 # ---------- Task 1: teacher labelling ----------
 label:
