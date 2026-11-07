@@ -1,0 +1,128 @@
+Sat Nov  7 06:09:56 IST 2026
+$ git clone https://github.com/Manas-Trivedi/cc-kd-command-parser.git
+$ cd cc-kd-command-parser
+$ make up
+INFO[0000] Using config file cluster/k3d.yaml (k3d.io/v1alpha5#simple) 
+INFO[0000] portmapping '127.0.0.1:8080:80' targets the loadbalancer: defaulting to [servers:*:proxy agents:*:proxy] 
+INFO[0000] Prep: Network                                
+INFO[0000] Created network 'k3d-kd'                     
+INFO[0000] Created image volume k3d-kd-images           
+INFO[0000] Starting new tools node...                   
+INFO[0000] Starting node 'k3d-kd-tools'                 
+INFO[0001] Creating node 'k3d-kd-server-0'              
+INFO[0001] Creating node 'k3d-kd-agent-0'               
+INFO[0001] Creating LoadBalancer 'k3d-kd-serverlb'      
+INFO[0001] Using the k3d-tools node to gather environment information 
+INFO[0001] HostIP: using network gateway 192.168.147.1 address 
+INFO[0001] Starting cluster 'kd'                        
+INFO[0001] Starting servers...                          
+INFO[0001] Starting node 'k3d-kd-server-0'              
+INFO[0006] Starting agents...                           
+INFO[0006] Starting node 'k3d-kd-agent-0'               
+INFO[0015] Starting helpers...                          
+INFO[0015] Starting node 'k3d-kd-serverlb'              
+INFO[0021] Injecting records for hostAliases (incl. host.k3d.internal) and for 3 network members into CoreDNS configmap... 
+INFO[0023] Cluster 'kd' created successfully!           
+INFO[0023] You can now use it like this:                
+kubectl cluster-info
+kubectl config use-context k3d-kd
+Switched to context "k3d-kd".
+kubectl wait --for=condition=Ready nodes --all --timeout=180s
+node/k3d-kd-agent-0 condition met
+node/k3d-kd-server-0 condition met
+./scripts/secrets.sh
+secret/seaweedfs-s3 created
+secret/s3-credentials created
+secret/s3-credentials created
+kubectl apply -f k8s/data/seaweedfs.yaml
+namespace/data configured
+persistentvolumeclaim/seaweedfs-data created
+deployment.apps/seaweedfs created
+service/seaweedfs created
+kubectl -n data rollout status deploy/seaweedfs --timeout=900s
+deployment "seaweedfs" successfully rolled out
+docker build -t kd-worker:1.0 -f worker/Dockerfile .
+
+
+
+
+
+
+
+
+
+
+
+
+docker build -t kd-parser:1.0 -f service/Dockerfile .
+
+
+
+
+
+
+
+
+
+
+
+
+k3d image import -c kd kd-worker:1.0 kd-parser:1.0
+INFO[0000] Importing image(s) into cluster 'kd'         
+INFO[0000] Starting new tools node...                   
+INFO[0000] Starting node 'k3d-kd-tools'                 
+INFO[0000] Saving 2 image(s) from runtime...            
+INFO[0002] Importing images into nodes...               
+INFO[0002] Importing images from tarball '/k3d/images/k3d-kd-images-20261107061709.tar' into node 'k3d-kd-server-0'... 
+INFO[0002] Importing images from tarball '/k3d/images/k3d-kd-images-20261107061709.tar' into node 'k3d-kd-agent-0'... 
+INFO[0009] Removing the tarball(s) from image volume... 
+INFO[0010] Removing k3d-tools node...                   
+INFO[0010] Successfully imported image(s)               
+INFO[0010] Successfully imported 2 image(s) into 1 cluster(s) 
+kubectl -n pipeline delete job seed-storage --ignore-not-found
+kubectl apply -f k8s/pipeline/seed-job.yaml
+job.batch/seed-storage created
+kubectl -n pipeline wait --for=condition=complete job/seed-storage --timeout=1200s
+job.batch/seed-storage condition met
+kubectl -n pipeline logs job/seed-storage
+created bucket datasets
+created bucket models
+uploaded s3://datasets/commands_pool.jsonl
+uploaded s3://models/v1/config.json
+uploaded s3://models/v1/generation_config.json
+uploaded s3://models/v1/model.safetensors
+uploaded s3://models/v1/special_tokens_map.json
+uploaded s3://models/v1/tokenizer.json
+uploaded s3://models/v1/tokenizer_config.json
+uploaded s3://models/v1/training_info.json
+model v1 seeded, sha256 18a4f79239a745a45f3d649bb5db0d5b4d19df1b94d9b712c9390de8b731571a
+uploaded s3://models/v2/config.json
+uploaded s3://models/v2/generation_config.json
+uploaded s3://models/v2/model.safetensors
+uploaded s3://models/v2/special_tokens_map.json
+uploaded s3://models/v2/tokenizer.json
+uploaded s3://models/v2/tokenizer_config.json
+uploaded s3://models/v2/training_info.json
+model v2 seeded, sha256 2750c42c2d3ae4f42dc8db5c8e1cd2187f9950db6f95361bc05346f44e74d7e0
+kubectl apply -f k8s/app/parser.yaml
+namespace/app configured
+deployment.apps/parser created
+service/parser created
+ingress.networking.k8s.io/parser created
+horizontalpodautoscaler.autoscaling/parser created
+kubectl -n app rollout status deploy/parser --timeout=900s
+deployment "parser" successfully rolled out
+ready: curl -s -X POST localhost:8080/parse -H 'content-type: application/json' -d '{"text":"set an alarm for seven am"}'
+make up exit 0 after 1353s
+Sat Nov  7 06:32:33 IST 2026
+
+$ curl -si -X POST localhost:8080/parse ...
+HTTP/1.1 200 OK
+Content-Length: 78
+Content-Type: application/json
+Date: Sat, 07 Nov 2026 01:02:40 GMT
+Server: uvicorn
+X-Model-Version: v1
+X-Served-By: parser-7744984469-pfj7c
+
+{"intent":"alarm_set","date":"tomorrow","time":"seven thirty am","place":null}
