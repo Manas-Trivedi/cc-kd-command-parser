@@ -1,0 +1,4 @@
+# make train run twice from scratch: same weights checksum and same per-epoch losses
+c3c7f9f5078b327e83bb69f50a6b9ba550272b97f2a445ecc2be1120ab4b9dff  <second run>/model.safetensors
+c3c7f9f5078b327e83bb69f50a6b9ba550272b97f2a445ecc2be1120ab4b9dff  artifacts/v1/model.safetensors
+loss identical

@@ -187,13 +187,13 @@ for k,v in d.items(): print(f"{k}: {v} ({100*v/t:.1f}%)")' | tee -a "$f"
 
 perf)
   # Task 7: the standard run, with kubectl top sampled every 10 s.
-  f=$OUT/perf_top.txt
+  f=$OUT/../task7/perf_top.txt
   : > "$f"
   (while true; do echo "--- $(ts)"; kubectl -n $NS top pods --no-headers 2>/dev/null; sleep 10; done) >> "$f" &
   watcher=$!
-  export LOADTEST_HEADERS_OUT=$OUT/loadtest_headers.json
+  export LOADTEST_HEADERS_OUT=$OUT/../task7/loadtest_headers.json
   $LOCUST -f tools/locustfile.py --headless --users 4 --spawn-rate 4 --run-time 2m \
-    --host http://localhost:8080 --csv $OUT/loadtest 2>&1 | tee $OUT/loadtest_locust.log || true
+    --host http://localhost:8080 --csv $OUT/../task7/loadtest 2>&1 | tee $OUT/../task7/loadtest_locust.log || true
   kill $watcher
   cat "$f"
   ;;
