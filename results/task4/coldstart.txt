@@ -1,47 +1,46 @@
-# run 1 05:05:15: deleting all pods: parser-7744984469-jw9cv parser-7744984469-zd6gj
-COLDSTART parser-7744984469-x5rff created 23:35:15 ready 23:35:21 seconds 6
-COLDSTART parser-7744984469-zbtxh created 23:35:15 ready 23:35:19 seconds 4
-# logs of parser-7744984469-jw9cv:
-2026-11-06 23:34:40,635 INFO downloading model s3://models/v1/ from http://seaweedfs.data.svc.cluster.local:8333
-2026-11-06 23:34:40,700 INFO downloaded s3://models/v1/config.json (799 bytes)
-2026-11-06 23:34:40,702 INFO downloaded s3://models/v1/generation_config.json (111 bytes)
-2026-11-06 23:34:41,000 INFO downloaded s3://models/v1/model.safetensors (281715176 bytes)
-2026-11-06 23:34:41,003 INFO downloaded s3://models/v1/model.sha256 (82 bytes)
-2026-11-06 23:34:41,005 INFO downloaded s3://models/v1/special_tokens_map.json (441 bytes)
-2026-11-06 23:34:41,019 INFO downloaded s3://models/v1/tokenizer.json (3564303 bytes)
-2026-11-06 23:34:41,021 INFO downloaded s3://models/v1/tokenizer_config.json (4835 bytes)
-2026-11-06 23:34:41,023 INFO downloaded s3://models/v1/training_info.json (995 bytes)
-2026-11-06 23:34:41,023 INFO download finished: 285.3 MB in 0.4s
-2026-11-06 23:34:41,698 INFO model v1 ready after 1.1s
-# run 2 05:05:28: deleting all pods: parser-7744984469-x5rff parser-7744984469-zbtxh
-COLDSTART parser-7744984469-m7spf created 23:35:28 ready 23:35:32 seconds 4
-COLDSTART parser-7744984469-ts8n7 created 23:35:28 ready 23:35:32 seconds 4
-# logs of parser-7744984469-m7spf:
-2026-11-06 23:35:30,263 INFO downloading model s3://models/v1/ from http://seaweedfs.data.svc.cluster.local:8333
-2026-11-06 23:35:30,321 INFO downloaded s3://models/v1/config.json (799 bytes)
-2026-11-06 23:35:30,324 INFO downloaded s3://models/v1/generation_config.json (111 bytes)
-2026-11-06 23:35:30,952 INFO downloaded s3://models/v1/model.safetensors (281715176 bytes)
-2026-11-06 23:35:30,956 INFO downloaded s3://models/v1/model.sha256 (82 bytes)
-2026-11-06 23:35:30,959 INFO downloaded s3://models/v1/special_tokens_map.json (441 bytes)
-2026-11-06 23:35:30,979 INFO downloaded s3://models/v1/tokenizer.json (3564303 bytes)
-2026-11-06 23:35:30,981 INFO downloaded s3://models/v1/tokenizer_config.json (4835 bytes)
-2026-11-06 23:35:30,983 INFO downloaded s3://models/v1/training_info.json (995 bytes)
-2026-11-06 23:35:30,984 INFO download finished: 285.3 MB in 0.7s
-2026-11-06 23:35:31,669 INFO model v1 ready after 1.4s
-# run 3 05:05:38: deleting all pods: parser-7744984469-m7spf parser-7744984469-ts8n7
-COLDSTART parser-7744984469-ht7xq created 23:35:39 ready 23:35:43 seconds 4
-COLDSTART parser-7744984469-ww788 created 23:35:38 ready 23:35:42 seconds 4
-# logs of parser-7744984469-ht7xq:
-2026-11-06 23:35:40,654 INFO downloading model s3://models/v1/ from http://seaweedfs.data.svc.cluster.local:8333
-2026-11-06 23:35:40,710 INFO downloaded s3://models/v1/config.json (799 bytes)
-2026-11-06 23:35:40,712 INFO downloaded s3://models/v1/generation_config.json (111 bytes)
-2026-11-06 23:35:41,296 INFO downloaded s3://models/v1/model.safetensors (281715176 bytes)
-2026-11-06 23:35:41,347 INFO downloaded s3://models/v1/model.sha256 (82 bytes)
-2026-11-06 23:35:41,355 INFO downloaded s3://models/v1/special_tokens_map.json (441 bytes)
-2026-11-06 23:35:41,376 INFO downloaded s3://models/v1/tokenizer.json (3564303 bytes)
-2026-11-06 23:35:41,383 INFO downloaded s3://models/v1/tokenizer_config.json (4835 bytes)
-2026-11-06 23:35:41,385 INFO downloaded s3://models/v1/training_info.json (995 bytes)
-2026-11-06 23:35:41,386 INFO download finished: 285.3 MB in 0.7s
-2026-11-06 23:35:41,990 INFO model v1 ready after 1.3s
-cold-start times (s): [6, 4, 4, 4, 4, 4]; median 4.0 s
-per run (slowest of the 2 new pods): run1 6 s, run2 4 s, run3 4 s -> median 4 s (timestamps have 1 s resolution)
+# run 1 05:32:05: deleting all pods: parser-6478d49f9d-gvg2s parser-6478d49f9d-m8f2n
+COLDSTART parser-6478d49f9d-ckg5v created 00:02:05 ready 00:02:09 seconds 4
+COLDSTART parser-6478d49f9d-xbjps created 00:02:05 ready 00:02:09 seconds 4
+# logs of parser-6478d49f9d-ckg5v:
+2026-11-07 00:02:07,261 INFO downloading model s3://models/v1/ from http://seaweedfs.data.svc.cluster.local:8333
+2026-11-07 00:02:07,314 INFO downloaded s3://models/v1/config.json (790 bytes)
+2026-11-07 00:02:07,317 INFO downloaded s3://models/v1/generation_config.json (111 bytes)
+2026-11-07 00:02:07,430 INFO downloaded s3://models/v1/model.safetensors (140861928 bytes)
+2026-11-07 00:02:07,432 INFO downloaded s3://models/v1/model.sha256 (82 bytes)
+2026-11-07 00:02:07,434 INFO downloaded s3://models/v1/special_tokens_map.json (441 bytes)
+2026-11-07 00:02:07,468 INFO downloaded s3://models/v1/tokenizer.json (3564303 bytes)
+2026-11-07 00:02:07,473 INFO downloaded s3://models/v1/tokenizer_config.json (4835 bytes)
+2026-11-07 00:02:07,477 INFO downloaded s3://models/v1/training_info.json (995 bytes)
+2026-11-07 00:02:07,478 INFO download finished: 144.4 MB in 0.2s
+2026-11-07 00:02:08,369 INFO model v1 ready after 1.1s
+# run 2 05:32:16: deleting all pods: parser-6478d49f9d-ckg5v parser-6478d49f9d-xbjps
+COLDSTART parser-6478d49f9d-bdqr8 created 00:02:16 ready 00:02:20 seconds 4
+COLDSTART parser-6478d49f9d-ccbt6 created 00:02:16 ready 00:02:20 seconds 4
+# logs of parser-6478d49f9d-bdqr8:
+2026-11-07 00:02:18,462 INFO downloading model s3://models/v1/ from http://seaweedfs.data.svc.cluster.local:8333
+2026-11-07 00:02:18,572 INFO downloaded s3://models/v1/config.json (790 bytes)
+2026-11-07 00:02:18,575 INFO downloaded s3://models/v1/generation_config.json (111 bytes)
+2026-11-07 00:02:18,871 INFO downloaded s3://models/v1/model.safetensors (140861928 bytes)
+2026-11-07 00:02:18,874 INFO downloaded s3://models/v1/model.sha256 (82 bytes)
+2026-11-07 00:02:18,876 INFO downloaded s3://models/v1/special_tokens_map.json (441 bytes)
+2026-11-07 00:02:18,890 INFO downloaded s3://models/v1/tokenizer.json (3564303 bytes)
+2026-11-07 00:02:18,892 INFO downloaded s3://models/v1/tokenizer_config.json (4835 bytes)
+2026-11-07 00:02:18,894 INFO downloaded s3://models/v1/training_info.json (995 bytes)
+2026-11-07 00:02:18,895 INFO download finished: 144.4 MB in 0.4s
+2026-11-07 00:02:19,564 INFO model v1 ready after 1.1s
+# run 3 05:32:27: deleting all pods: parser-6478d49f9d-bdqr8 parser-6478d49f9d-ccbt6
+COLDSTART parser-6478d49f9d-8zv27 created 00:02:27 ready 00:02:31 seconds 4
+COLDSTART parser-6478d49f9d-mnms4 created 00:02:27 ready 00:02:31 seconds 4
+# logs of parser-6478d49f9d-8zv27:
+2026-11-07 00:02:29,017 INFO downloading model s3://models/v1/ from http://seaweedfs.data.svc.cluster.local:8333
+2026-11-07 00:02:29,183 INFO downloaded s3://models/v1/config.json (790 bytes)
+2026-11-07 00:02:29,252 INFO downloaded s3://models/v1/generation_config.json (111 bytes)
+2026-11-07 00:02:29,562 INFO downloaded s3://models/v1/model.safetensors (140861928 bytes)
+2026-11-07 00:02:29,566 INFO downloaded s3://models/v1/model.sha256 (82 bytes)
+2026-11-07 00:02:29,569 INFO downloaded s3://models/v1/special_tokens_map.json (441 bytes)
+2026-11-07 00:02:29,584 INFO downloaded s3://models/v1/tokenizer.json (3564303 bytes)
+2026-11-07 00:02:29,586 INFO downloaded s3://models/v1/tokenizer_config.json (4835 bytes)
+2026-11-07 00:02:29,589 INFO downloaded s3://models/v1/training_info.json (995 bytes)
+2026-11-07 00:02:29,589 INFO download finished: 144.4 MB in 0.6s
+2026-11-07 00:02:30,281 INFO model v1 ready after 1.3s
+cold-start times (s): [4, 4, 4, 4, 4, 4]; median 4.0 s

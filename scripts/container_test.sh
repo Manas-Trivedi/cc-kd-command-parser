@@ -64,6 +64,8 @@ for line in open("results/task3/stats_samples.txt"):
 print(f"docker stats samples: {len(vals)}; peak memory {max(vals):.1f} MiB of 1024 MiB limit")
 EOF
 echo "cgroup memory.peak (exact peak since start): $(docker exec parser-test cat /sys/fs/cgroup/memory.peak | awk '{printf "%.1f MiB", $1/1048576}')"
+echo "process peak RSS (VmHWM of uvicorn, PID 1): $(docker exec parser-test grep VmHWM /proc/1/status | awk '{printf "%.1f MiB", $2/1024}')"
+echo "  (memory.peak above also counts the page cache of the downloaded model files, which the kernel can reclaim)"
 echo "OOM killed: $(docker inspect parser-test --format '{{.State.OOMKilled}}'), restarts: $(docker inspect parser-test --format '{{.RestartCount}}'), running: $(docker inspect parser-test --format '{{.State.Running}}')"
 
 echo; echo "## FAULT_INJECT=1"
