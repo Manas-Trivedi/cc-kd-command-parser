@@ -1,0 +1,85 @@
+name: ci
+
+on:
+  push:
+    branches: [main]
+    tags: [final]
+  pull_request:
+  workflow_dispatch:
+    inputs:
+      model:
+        description: "release tag to evaluate (v1, v2) or 'untrained' for the base Pythia-70M"
+        default: v1
+
+permissions:
+  contents: read
+
+env:
+  MODEL: ${{ github.event.inputs.model || 'v1' }}
+
+jobs:
+  lint:
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with: {python-version: "3.12"}
+      - run: pip install ruff==0.8.2
+      - run: ruff check .
+
+  unit-tests:
+    needs: lint
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with: {python-version: "3.12", cache: pip}
+      - run: pip install -r requirements.txt
+      - run: pytest -v tests
+
+  evaluate:
+    needs: unit-tests
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with: {python-version: "3.12", cache: pip}
+      - run: pip install -r requirements.txt
+      - name: Download model from the GitHub Release and check its checksum
+        if: env.MODEL != 'untrained'
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          gh release download "$MODEL" -R "$GITHUB_REPOSITORY" -D release
+          (cd release && sha256sum -c "model-$MODEL.sha256")
+          mkdir -p model && tar -xzf "release/model-$MODEL.tar.gz" -C model --strip-components=1
+          ls -la model
+      - name: Use the untrained base model (deliberately bad)
+        if: env.MODEL == 'untrained'
+        run: python -c "from transformers import AutoModelForCausalLM as M, AutoTokenizer as T; n='EleutherAI/pythia-70m'; T.from_pretrained(n).save_pretrained('model'); M.from_pretrained(n).save_pretrained('model')"
+      - name: Predict on validation.jsonl
+        run: python training/evaluate.py --model model --out ci/predictions.jsonl
+      - name: Score
+        run: python tools/score.py ci/predictions.jsonl data/validation.jsonl --out ci/report.json
+      - uses: actions/upload-artifact@v4
+        with: {name: evaluation, path: ci/}
+
+  quality-gate:
+    needs: evaluate
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/download-artifact@v4
+        with: {name: evaluation, path: ci}
+      - name: score.py --min-validity 95
+        run: python3 tools/score.py ci/predictions.jsonl data/validation.jsonl --min-validity 95
+
+  secret-scan:
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@v4
+        with: {fetch-depth: 0}
+      - name: gitleaks
+        run: |
+          curl -sSfL https://github.com/gitleaks/gitleaks/releases/download/v8.21.2/gitleaks_8.21.2_linux_x64.tar.gz | tar -xz gitleaks
+          ./gitleaks detect --source . --redact --verbose --exit-code 1
